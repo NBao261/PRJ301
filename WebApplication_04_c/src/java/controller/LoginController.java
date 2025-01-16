@@ -48,14 +48,15 @@ public class LoginController extends HttpServlet {
             //forward, redirect
             //foward
             RequestDispatcher rd = request.getRequestDispatcher("search.html");
-            rd.forward(request, response);
+            rd.forward(request, response); //truyen thong tin tu sv len
+                                            //kh hien thi url
         } else {
             //forwawrd, redirect
             //forwawrd
             //RequestDispatcher rd = request.getRequestDispatcher("Invalid.html");
 
             //redirect
-            response.sendRedirect("Invalid.html");
+            response.sendRedirect("Invalid.html"); //lam viec voi client, hien thi url
 
             //compare rd.forward vs response.sendRedirect
         }
