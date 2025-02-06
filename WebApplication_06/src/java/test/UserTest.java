@@ -7,6 +7,7 @@ package test;
 
 import dao.UserDAO;
 import dto.UserDTO;
+import java.util.List;
 
 /**
  *
@@ -24,6 +25,11 @@ public class UserTest {
 //        }
 //        UserDTO u2 = new UserDTO ("NCB01", "Nguyen Chi Bao", "AD","testupdate");
 //        userDAO.update(u2);
-        userDAO.delete("USER8");
+//        userDAO.delete("USER8");
+//        List<UserDTO> l1 = userDAO.readAll();
+//        for (UserDTO u : l1) {
+//            System.out.println(u);
+//        }
+            System.out.println(userDAO.readById("NCB01"));
     }
 }
