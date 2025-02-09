@@ -30,6 +30,11 @@ public class UserTest {
 //        for (UserDTO u : l1) {
 //            System.out.println(u);
 //        }
-            System.out.println(userDAO.readById("NCB01"));
+//            System.out.println(userDAO.readById("NCB01"));
+        List<UserDTO> result1 = userDAO.search("NCB01");
+        System.out.println("Kết quả tìm kiem:");
+        for (UserDTO user : result1) {
+            System.out.println(user);
+        }
     }
 }
