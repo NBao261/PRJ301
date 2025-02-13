@@ -3,6 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
+
+/*
+DAO là một design pattern dùng để truy cập và thao tác với database
+Chứa tất cả các phương thức CRUD (Create, Read, Update, Delete)
+Đóng gói toàn bộ logic truy cập database
+Tách biệt logic truy cập dữ liệu khỏi business logic
+Giúp code dễ maintain và test hơn
+ */
+
+
 package dao;
 
 import dto.UserDTO;
