@@ -5,6 +5,7 @@
  */
 package utils;
 
+import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -18,7 +19,7 @@ import java.util.logging.Logger;
  */
 public class DBUtils {
 
-    private static final String DB_Name = "prj301_1805_06";
+    private static final String DB_Name = "prj301_1805_slot8";
     private static final String DB_Username = "sa";
     private static final String DB_Password = "12345";
 
@@ -34,7 +35,6 @@ public class DBUtils {
         try {
             Connection c = getConnection();
             System.out.println(c);
-           
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(DBUtils.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
