@@ -1,6 +1,6 @@
 <%-- 
-    Document   : invalid
-    Created on : Feb 13, 2025, 1:55:51 PM
+    Document   : logout_confirm
+    Created on : Feb 17, 2025, 4:27:54 PM
     Author     : cbao
 --%>
 
@@ -14,12 +14,8 @@
     <body>
         <%@include file="header.jsp" %>
         <div style="min-height: 500px; padding: 20px">
-            <h1>
-                <font color="red">
-                Invalid Username or Password!
-                </font>
-            </h1>
-            <a href="login.jsp">Click here to try again</a>
+            <h4>You are logged out!</h4>
+            <a href="MainController">Back to login</a>
         </div>
         <%@include file="footer.jsp" %>
     </body>

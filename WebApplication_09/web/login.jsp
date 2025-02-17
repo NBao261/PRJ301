@@ -1,100 +1,162 @@
-<%-- 
-    Document   : login
-    Created on : Feb 13, 2025, 1:55:04 PM
-    Author     : cbao
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="vi">
-     <head>
+<html>
+    <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Đăng nhập</title>
         <style>
+            /* Reset CSS */
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            /* Giữ nguyên cấu trúc body */
             body {
+                font-family: Arial, sans-serif;
+                background-color: #f5f5f5;
                 display: flex;
                 flex-direction: column;
-                align-items: center;
                 min-height: 100vh;
-                background: #f3f3f3;
             }
+
+            /* Container cho login */
             .login-container {
-                background: white;
-                padding: 30px;
-                width: 400px;
-                box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-                border-radius: 10px;
-                text-align: center;
-                margin: 40px 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-grow: 1; /* Đảm bảo phần đăng nhập chiếm hết không gian */
+                padding: 20px;
+                width: 100%;
             }
-            h2 {
-                margin-bottom: 20px;
+
+            /* Form đăng nhập */
+            .login-form {
+                background: white;
+                padding: 40px;
+                border-radius: 8px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                width: 100%;
+                max-width: 500px; /* Đặt kích thước lớn hơn */
+                margin: 0 auto;
+            }
+
+            /* Tiêu đề */
+            .form-title {
+                text-align: center;
+                margin-bottom: 30px;
+                font-size: 28px;
+                font-weight: bold;
                 color: #333;
             }
-            .input-group {
-                margin-bottom: 15px;
-                text-align: left;
+
+            /* Các nhóm input */
+            .form-group {
+                margin-bottom: 25px;
             }
-            .input-group label {
+
+            .form-group label {
                 display: block;
-                font-size: 14px;
-                margin-bottom: 5px;
-                color: #555;
+                margin-bottom: 10px;
+                font-weight: 500;
+                color: #333;
+                font-size: 16px;
             }
-            .input-group input {
-                width: 100%;
-                padding: 10px;
-                border: 1px solid #ddd;
-                border-radius: 5px;
-                transition: 0.3s;
-            }
-            .input-group input:focus {
-                border-color: #ff7e5f;
-                outline: none;
-            }
-            button {
+
+            .form-group input {
                 width: 100%;
                 padding: 12px;
-                background: linear-gradient(135deg, #ff7e5f, #feb47b);
-                color: white;
-                border: none;
-                border-radius: 5px;
-                font-size: 16px;
-                cursor: pointer;
-                transition: 0.3s;
+                border: 1px solid #ddd;
+                border-radius: 6px;
+                font-size: 18px;
+                transition: border-color 0.3s;
             }
-            button:hover {
-                background: linear-gradient(135deg, #e74c3c, #c0392b);
+
+            .form-group input:focus {
+                border-color: #4CAF50;
+                outline: none;
+            }
+
+            /* Nút đăng nhập */
+            .submit-btn {
+                background-color: #4CAF50;
+                color: white;
+                padding: 14px 20px;
+                border: none;
+                border-radius: 6px;
+                cursor: pointer;
+                width: 100%;
+                font-size: 18px;
+                transition: background-color 0.3s;
+            }
+
+            .submit-btn:hover {
+                background-color: #45a049;
+            }
+
+            /* Responsive */
+            @media (max-width: 768px) {
+                .login-form {
+                    padding: 35px;
+                }
+
+                .form-title {
+                    font-size: 24px;
+                }
+
+                .form-group input {
+                    font-size: 16px;
+                }
+
+                .submit-btn {
+                    font-size: 16px;
+                    padding: 12px 18px;
+                }
+            }
+
+            @media (max-width: 480px) {
+                .login-form {
+                    padding: 25px;
+                }
+
+                .form-title {
+                    font-size: 22px;
+                }
+
+                .form-group input {
+                    font-size: 14px;
+                }
+
+                .submit-btn {
+                    font-size: 14px;
+                    padding: 12px;
+                }
             }
         </style>
     </head>
     <body>
-
-        <!-- Nhúng Header -->
         <%@include file="header.jsp" %>
-
-        <!-- Form đăng nhập -->
         <div class="login-container">
-            <h2>Đăng nhập</h2>
-            <form action="MainController" method="post">
-                <input type="hidden" name="action" value="login"/>
-                
-                <div class="input-group">
-                    <label for="username">Tên đăng nhập</label>
-                    <input type="text" id="username" name="txtUsername" required>
-                </div>
-                
-                <div class="input-group">
-                    <label for="password">Mật khẩu</label>
-                    <input type="password" id="password" name="txtPassword" required>
-                </div>
-                
-                <button type="submit">Đăng nhập</button>
-            </form>
+            <div class="login-form">
+                <h2 class="form-title">Đăng nhập</h2>
+                <form action="MainController" method="post">
+                    <input type="hidden" name="action" value="login" />
+
+                    <div class="form-group">
+                        <label for="userId">Tên đăng nhập</label>
+                        <input type="text" id="userId" name="txtUsername" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Mật khẩu</label>
+                        <input type="password" id="password" name="txtPassword" required />
+                    </div>
+
+                    <button type="submit" class="submit-btn">Đăng nhập</button>
+                </form>
+            </div>
         </div>
-
-        <!-- Nhúng Footer -->
         <%@include file="footer.jsp" %>
-
     </body>
 </html>

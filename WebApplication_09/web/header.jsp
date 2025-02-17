@@ -1,95 +1,132 @@
-<%-- 
-    Document   : header
-    Created on : Feb 17, 2025, 2:22:41 PM
-    Author     : cbao
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<header>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
-        }
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    /* Cấu trúc chung */
+    body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+
+    /* Header */
+    header {
+        background-color: #2a9d8f;
+        color: white;
+        padding: 15px 50px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+
+    header .logo {
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    header nav ul {
+        list-style: none;
+        display: flex;
+        margin: 0;
+        padding: 0;
+    }
+
+    header nav ul li {
+        margin: 0 15px;
+    }
+
+    header nav ul li a {
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+        transition: color 0.3s;
+    }
+
+    header nav ul li a:hover {
+        color: #e76f51;
+    }
+
+    header .booking-btn {
+        background-color: #e76f51;
+        color: white;
+        padding: 10px 20px;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+
+    header .booking-btn:hover {
+        background-color: #f4a261;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
         header {
-            width: 100%;
-            background: white;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            position: relative;
-            z-index: 1000;
+            padding: 15px 30px;
         }
-        .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 90%;
-            margin: auto;
-            padding: 15px 0;
+
+        header .logo {
+            font-size: 20px;
         }
-        .logo a {
-            color: #2c3e50;
-            font-size: 28px;
-            font-weight: bold;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
+
+        header nav ul {
+            display: block;
+            text-align: center;
         }
-        .logo img {
-            width: 40px;
-            height: 40px;
-            margin-right: 10px;
+
+        header nav ul li {
+            margin: 10px 0;
         }
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-        nav ul li {
-            margin: 0 15px;
-        }
-        nav ul li a {
-            color: #2c3e50;
-            text-decoration: none;
+
+        header nav ul li a {
             font-size: 16px;
-            font-weight: 500;
-            transition: 0.3s;
-            padding: 8px 12px;
-            border-radius: 5px;
         }
-        nav ul li a:hover {
-            background: #ff7e5f;
-            color: white;
-        }
-        .cta-button {
-            background: #ff7e5f;
-            color: white;
+
+        header .booking-btn {
+            font-size: 16px;
             padding: 8px 15px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: 0.3s;
         }
-        .cta-button:hover {
-            background: #e74c3c;
-        }
-    </style>
+    }
 
-    <div class="container">
-        <div class="logo">
-            <img src="logo.png" alt="Homestay Logo">
-            <a href="#">Homestay Booking</a>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="#">Trang chủ</a></li>
-                <li><a href="#">Homestay</a></li>
-                <li><a href="#">Ưu đãi</a></li>
-                <li><a href="#">Liên hệ</a></li>
-                <li><a href="#" class="cta-button">Đặt ngay</a></li>
-            </ul>
-        </nav>
-    </div>
+    @media (max-width: 480px) {
+        header {
+            padding: 10px 20px;
+        }
+
+        header .logo {
+            font-size: 18px;
+        }
+
+        header nav ul li a {
+            font-size: 14px;
+        }
+
+        header .booking-btn {
+            font-size: 14px;
+            padding: 6px 12px;
+        }
+    }
+</style>
+
+<!-- Header -->
+<header>
+    <div class="logo">🏡 Homestay</div>
+    <nav>
+        <ul>
+            <li><a href="index.jsp">Trang chủ</a></li>
+            <li><a href="homestay.jsp">Homestay</a></li>
+            <li><a href="services.jsp">Dịch vụ</a></li>
+            <li><a href="contact.jsp">Liên hệ</a></li>
+        </ul>
+    </nav>
+    <a href="booking.jsp" class="booking-btn">Đặt ngay</a>
 </header>
-
