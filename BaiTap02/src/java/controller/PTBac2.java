@@ -39,9 +39,9 @@ public class PTBac2 extends HttpServlet {
                         result = "Phương trình vô nghiệm!";
                     }
                 }
-                request.setAttribute("result", result);
+                request.setAttribute("result", result); 
             } catch (NumberFormatException e) {
-                request.setAttribute("result", "Vui lòng nhập số hợp lệ cho a, b, c!");
+                request.setAttribute("result", "Nhập đủ số vàoooo");
             }
             request.getRequestDispatcher("index.jsp").forward(request, response);
     }
