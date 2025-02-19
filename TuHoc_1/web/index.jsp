@@ -17,6 +17,11 @@ and open the template in the editor.
             Number 2: <input type="text" name="num2" value="" />
             <input type="submit" value="submit" />
         </form>
-
+        <%
+            String result = (String) request.getAttribute("result");
+            if (result != null) {
+        %>
+        <%= result%>
+        <% }%>
     </body>
 </html>
