@@ -59,7 +59,7 @@
                     <td><%=b.getPublishYear()%></td>
                     <td><%=b.getPrice()%></td>
                     <td><%=b.getQuantity()%></td>
-                 </tr>
+                </tr>
                 <%
                     }
                 %>
