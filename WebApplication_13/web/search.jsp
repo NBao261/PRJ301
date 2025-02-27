@@ -85,12 +85,16 @@
                 <input type="submit" value="Search"/>
                 
             </form>
+                
 
             <%
                 if (request.getAttribute("books") != null) {
                     List<BookDTO> books = (List<BookDTO>) request.getAttribute("books");
                     
             %>
+            <a href="bookForm.jsp">
+                Add 
+            </a>
             <table class="book-table">
                 <thead>
                     <tr>
