@@ -67,7 +67,7 @@
                     <form action="projects" method="post" style="display:inline;">
                         <input type="hidden" name="action" value="delete">
                         <input type="hidden" name="projectId" value="<%= project.getProjectId()%>">
-                        <input type="submit" value="Delete" onclick="return confirm('Are you sure?');">
+                        <input type="submit" value="Delete" onclick="return confirm('Confirm Delete?');">
                     </form>
                 </td>
                 <% } %>
@@ -79,21 +79,7 @@
         </table>
 
         <% if ("Founder".equals(user.getRole())) {%>
-        <h3>Create New Project</h3>
-        <form action="projects" method="post">
-            <input type="hidden" name="action" value="create">
-            Project ID: <input type="number" name="projectId" value="<%= request.getAttribute("formProjectId") != null ? request.getAttribute("formProjectId") : ""%>" required><br>
-            Name: <input type="text" name="projectName" value="<%= request.getAttribute("formProjectName") != null ? request.getAttribute("formProjectName") : ""%>" required><br>
-            Description: <textarea name="description"><%= request.getAttribute("formDescription") != null ? request.getAttribute("formDescription") : ""%></textarea><br>
-            Status: <select name="status">
-                <option value="Ideation" <%= "Ideation".equals(request.getAttribute("formStatus")) ? "selected" : ""%>>Ideation</option>
-                <option value="Development" <%= "Development".equals(request.getAttribute("formStatus")) ? "selected" : ""%>>Development</option>
-                <option value="Launch" <%= "Launch".equals(request.getAttribute("formStatus")) ? "selected" : ""%>>Launch</option>
-                <option value="Scaling" <%= "Scaling".equals(request.getAttribute("formStatus")) ? "selected" : ""%>>Scaling</option>
-            </select><br>
-            Estimated Launch (yyyy-MM-dd): <input type="text" name="estimatedLaunch" value="<%= request.getAttribute("formEstimatedLaunch") != null ? request.getAttribute("formEstimatedLaunch") : ""%>" required><br>
-            <input type="submit" value="Create">
-        </form>
+        <p><a href="add.jsp">Create New Project</a></p>
         <% } %>
 
         <%

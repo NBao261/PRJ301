@@ -57,7 +57,6 @@ public class ProjectController extends HttpServlet {
             request.getRequestDispatcher("dashboard.jsp").forward(request, response);
         } 
         else if (action.equals("create") && user.getRole().equals("Founder")) {
-            // Lấy dữ liệu từ form để xử lý và giữ lại nếu lỗi
             String projectIdStr = request.getParameter("projectId");
             String projectName = request.getParameter("projectName");
             String description = request.getParameter("description");
@@ -87,7 +86,6 @@ public class ProjectController extends HttpServlet {
                 return;
             }
 
-            // Tạo đối tượng project
             StartupProjectDTO project = new StartupProjectDTO();
             try {
                 int projectId = Integer.parseInt(projectIdStr);
@@ -102,7 +100,7 @@ public class ProjectController extends HttpServlet {
 
             project.setProjectName(projectName);
             project.setDescription(description);
-            project.setStatus(status != null ? status : "Ideation"); // Giá trị mặc định nếu status null
+            project.setStatus(status != null ? status : "Ideation");
             try {
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 sdf.setLenient(false); // Không cho phép parse ngày không hợp lệ
