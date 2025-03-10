@@ -6,6 +6,70 @@
 <html>
     <head>
         <title>Project Dashboard</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 20px;
+                max-width: 1200px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            h2, h3 {
+                color: #333;
+            }
+            a {
+                color: #0066cc;
+                text-decoration: none;
+            }
+            a:hover {
+                text-decoration: underline;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin: 20px 0;
+            }
+            th, td {
+                padding: 10px;
+                text-align: left;
+                border: 1px solid #ddd;
+            }
+            th {
+                background-color: #f5f5f5;
+                color: #333;
+            }
+            tr:nth-child(even) {
+                background-color: #fafafa;
+            }
+            tr:hover {
+                background-color: #f0f0f0;
+            }
+            form {
+                margin: 10px 0;
+            }
+            input[type="text"], select {
+                padding: 5px;
+                margin: 5px 0;
+            }
+            input[type="submit"] {
+                padding: 5px 15px;
+                background-color: #0066cc;
+                color: white;
+                border: none;
+                cursor: pointer;
+            }
+            input[type="submit"]:hover {
+                background-color: #0052a3;
+            }
+            .logout {
+                float: right;
+            }
+            .message {
+                padding: 10px;
+                margin: 10px 0;
+                border-radius: 5px;
+            }
+        </style>
     </head>
     <body>
         <%
@@ -17,7 +81,7 @@
         %>
 
         <h2>Welcome, <%= user.getName()%></h2>
-        <a href="logout">Logout</a>
+        <a href="logout" class="logout">Logout</a>
 
         <h3>Search Projects</h3>
         <form action="projects" method="get">
@@ -27,7 +91,7 @@
         </form>
 
         <h3>Startup Projects</h3>
-        <table border="1">
+        <table>
             <tr>
                 <th>ID</th>
                 <th>Name</th>
@@ -86,14 +150,14 @@
             String message = (String) session.getAttribute("message");
             if (message != null) {
         %>
-        <p style="color:green"><%= message%></p>
+        <p class="message" style="color:green"><%= message%></p>
         <%
                 session.removeAttribute("message");
             }
             String error = (String) request.getAttribute("error") != null ? (String) request.getAttribute("error") : (String) session.getAttribute("error");
             if (error != null) {
         %>
-        <p style="color:red"><%= error%></p>
+        <p class="message" style="color:red"><%= error%></p>
         <%
                 session.removeAttribute("error");
             }

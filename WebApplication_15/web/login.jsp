@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -92,10 +93,7 @@
                     <button type="submit" class="submit-btn">Đăng nhập</button>
                 </form>
                 
-                <%
-                    String message = request.getAttribute("message")+"";
-                %>
-                <%=message.equals("null")?"":message%>
+                ${requestScope.message == null ? "" : requestScope.message}
             </div>
         </div>
         <%@include file="footer.jsp" %>

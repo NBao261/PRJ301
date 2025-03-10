@@ -4,6 +4,42 @@
 <html>
     <head>
         <title>Create New Project</title>
+        <style>
+            body {
+                font-family: Arial;
+                margin: 20px;
+                text-align: center; 
+            }
+            h2, h3 {
+                margin: 10px 0;
+            }
+            a {
+                display: block;
+                margin: 10px 0;
+            }
+            form {
+                margin: 20px auto;
+                width: 400px; 
+                text-align: left; 
+            }
+            input[type="number"], input[type="text"], textarea, select {
+                width: 100%; 
+                padding: 5px;
+                margin: 5px 0; 
+            }
+            textarea {
+                height: 100px; 
+            }
+            input[type="submit"] {
+                padding: 5px 15px;
+                background-color: #007bff; 
+                color: white;
+                border: none;
+            }
+            p {
+                margin: 10px 0;
+            }
+        </style>
     </head>
     <body>
         <%
@@ -13,7 +49,7 @@
                 return;
             }
             if (!"Founder".equals(user.getRole())) {
-                response.sendRedirect("dashboard.jsp");
+                response.sendRedirect("projects");
                 return;
             }
         %>

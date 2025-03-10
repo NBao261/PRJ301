@@ -1,13 +1,10 @@
-<%-- 
-    Document   : bookForm
-    Created on : Feb 27, 2025, 8:16:21 AM
-    Author     : tungi
---%>
+
 <%@page import="utils.AuthUtils"%>
 <%@page import="dto.UserDTO"%>
 <%@page import="dto.BookDTO"%>
 <%@page import="java.awt.print.Book"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -136,7 +133,7 @@
                 color: #e74c3c;
                 margin-top: 0;
             }
-            
+
             .back-link {
                 display: block;
                 text-align: center;
@@ -144,7 +141,7 @@
                 color: #3498db;
                 text-decoration: none;
             }
-            
+
             .back-link:hover {
                 text-decoration: underline;
             }
@@ -153,11 +150,11 @@
                 .form-container {
                     padding: 20px;
                 }
-                
+
                 .button-group {
                     flex-direction: column;
                 }
-                
+
                 input[type="submit"], input[type="reset"] {
                     margin: 5px 0;
                 }
@@ -168,95 +165,81 @@
         <jsp:include page="header.jsp"/>
 
         <div class="page-content">
-            <% if (AuthUtils.isLoggedIn(session)) {
-                    if (AuthUtils.isAdmin(session)) {
-            %>
-            <%
-                BookDTO book = new BookDTO();
-                try {
-                    book = (BookDTO) request.getAttribute("book");
-                } catch (Exception e) {
-                    book = new BookDTO();
-                }
-                if (book == null) {
-                    book = new BookDTO();
-                }
-                // get error information
-                String txtBookID_error = request.getAttribute("txtBookID_error") + "";
-                txtBookID_error = txtBookID_error.equals("null") ? "" : txtBookID_error;
-                String txtTitle_error = request.getAttribute("txtTitle_error") + "";
-                txtTitle_error = txtTitle_error.equals("null") ? "" : txtTitle_error;
-                String txtQuantity_error = request.getAttribute("txtQuantity_error") + "";
-                txtQuantity_error = txtQuantity_error.equals("null") ? "" : txtQuantity_error;
-            %>
-            <div class="form-container">
-                <h1>Book Information</h1>
-                <form action="MainController" method="post">
-                    <input type="hidden" name="action" value="add"/>
+            <c:set var="isLoggedIn" value="<%=AuthUtils.isLoggedIn(session)%>"/>
+            <c:set var="isAdmin" value="<%=AuthUtils.isAdmin(session)%>"/>
+            <c:if test="${isLoggedIn}">
+                <c:if test="${isAdmin}">
+                    <div class="form-container">
+                        <h1>Book Information</h1>
+                        <jsp:useBean id="book" class="dto.BookDTO" scope="request">
+                            <form action="MainController" method="post">
+                                <input type="hidden" name="action" value="add"/>
 
-                    <div class="form-group">
-                        <label for="txtBookID">Book ID:</label>
-                        <input type="text" id="txtBookID" name="txtBookID" value="<%=book.getBookID()%>"/>
-                        <% if (!txtBookID_error.isEmpty()) {%>
-                        <div class="error-message"><%=txtBookID_error%></div>
-                        <% }%>
-                    </div>
+                                <div class="form-group">
+                                    <label for="txtBookID">Book ID:</label>
+                                    <input type="text" id="txtBookID" name="txtBookID" value="${book.bookID}"/>
+                                    <c:if test="${not empty txtBookID_error}">
+                                        <div class="error-message">${txtBookID_error}</div>
+                                    </c:if>
+                                </div>
 
-                    <div class="form-group">
-                        <label for="txtTitle">Title:</label>
-                        <input type="text" id="txtTitle" name="txtTitle" value="<%=book.getTitle()%>"/>
-                        <% if (!txtTitle_error.isEmpty()) {%>
-                        <div class="error-message"><%=txtTitle_error%></div>
-                        <% }%>
-                    </div>
+                                <div class="form-group">
+                                    <label for="txtTitle">Title:</label>
+                                    <input type="text" id="txtTitle" name="txtTitle" value="${book.title}"/>
+                                    <c:if test="${not empty txtTitle_error}">
+                                        <div class="error-message">${txtTitle_error}</div>
+                                    </c:if>
+                                </div>
 
-                    <div class="form-group">
-                        <label for="txtAuthor">Author:</label>
-                        <input type="text" id="txtAuthor" name="txtAuthor" value="<%=book.getAuthor()%>"/>
-                    </div>
+                                <div class="form-group">
+                                    <label for="txtAuthor">Author:</label>
+                                    <input type="text" id="txtAuthor" name="txtAuthor" value="${book.author}"/>
+                                </div>
 
-                    <div class="form-group">
-                        <label for="txtPublishYear">Publish Year:</label>
-                        <input type="number" id="txtPublishYear" name="txtPublishYear" value="<%=book.getPublishYear()%>"/>
-                    </div>
+                                <div class="form-group">
+                                    <label for="txtPublishYear">Publish Year:</label>
+                                    <input type="number" id="txtPublishYear" name="txtPublishYear" value="${book.publishYear}"/>
+                                </div>
 
-                    <div class="form-group">
-                        <label for="txtPrice">Price:</label>
-                        <input type="number" id="txtPrice" name="txtPrice" value="<%=book.getPrice()%>"/>
-                    </div>
+                                <div class="form-group">
+                                    <label for="txtPrice">Price:</label>
+                                    <input type="number" id="txtPrice" name="txtPrice" value="${book.price}"/>
+                                </div>
 
-                    <div class="form-group">
-                        <label for="txtQuantity">Quantity:</label>
-                        <input type="number" id="txtQuantity" name="txtQuantity" value="<%=book.getQuantity()%>"/>
-                        <% if (!txtQuantity_error.isEmpty()) {%>
-                        <div class="error-message"><%=txtQuantity_error%></div>
-                        <% }%>
-                    </div>
+                                <div class="form-group">
+                                    <label for="txtQuantity">Quantity:</label>
+                                    <input type="number" id="txtQuantity" name="txtQuantity" value="${book.quantity}"/>
 
-                    <div class="button-group">
-                        <input type="submit" value="Save" />
-                        <input type="reset" value="Reset"/>
+                                    <c:if test="${not empty txtQuantity_error}">
+                                        <div class="error-message">${txtQuantity_error}</div>
+                                    </c:if>
+                                </div>
+
+                                <div class="button-group">
+                                    <input type="submit" value="Save" />
+                                    <input type="reset" value="Reset"/>
+                                </div>
+                            </form>
+                        </jsp:useBean>
+                        <a href="MainController?action=search" class="back-link">Back to Book List</a>
                     </div>
-                </form>
-                
-                <a href="MainController?action=search" class="back-link">Back to Book List</a>
-            </div>
-            <%} else {%>
-            <div class="form-container error-container">
-                <h1>403 Error</h1>
-                <p>You do not have permission to access this content!</p>
-                <a href="MainController?action=search" class="back-link">Back to Book List</a>
-            </div>
-            <%}
-                } else {%>
-            <div class="form-container error-container">
-                <h1>Access Denied</h1>
-                <p>Please log in to access this page.</p>
-                <a href="login.jsp" class="back-link">Go to Login</a>
-            </div>
-            <%}%>
+                </c:if>
+                <c:if test="${!isAdmin}">
+                    <div class="form-container error-container">
+                        <h1>403 Error</h1>
+                        <p>You do not have permission to access this content!</p>
+                        <a href="MainController?action=search" class="back-link">Back to Book List</a>
+                    </div>
+                </c:if>
+            </c:if>
+            <c:if test="${!isLoggedIn}">
+                <div class="form-container error-container">
+                    <h1>Access Denied</h1>
+                    <p>Please log in to access this page.</p>
+                    <a href="login.jsp" class="back-link">Go to Login</a>
+                </div>
+            </c:if>S
         </div>
-
         <jsp:include page="footer.jsp"/>
     </body>
 </html>

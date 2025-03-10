@@ -1,6 +1,7 @@
 <%@page import="utils.AuthUtils"%>
 <%@page import="dto.UserDTO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <style>
     * {
         margin: 0;
@@ -129,18 +130,15 @@
                     <input type="text" class="search-input" placeholder="Tìm kiếm...">
                     <button class="search-button">🔍</button>
                 </div>
-                <% if (AuthUtils.isLoggedIn(session)) {
-                        UserDTO user = (UserDTO) session.getAttribute("user");
-                %>
-                <div class="user-section">
-                    <span class="welcome-text">Xin chào, <span class="user-name"><%=user.getFullName()%></span>!</span>
-                    <form action="MainController" method="post" style="margin: 0;">
-                        <input type="hidden" name="action" value="logout"/>
-                        <input type="submit" value="Đăng xuất" class="logout-btn"/>
-                    </form>
-                </div>
-                <%
-                }%>
+                <c:if test="${not empty sessionScope.user}">
+                    <div class="user-section">
+                        <span class="welcome-text">Xin chào, <span class="user-name">${user.fullName}</span>!</span>
+                        <form action="MainController" method="post" style="margin: 0;">
+                            <input type="hidden" name="action" value="logout"/>
+                            <input type="submit" value="Đăng xuất" class="logout-btn"/>
+                        </form>
+                    </div>
+                </c:if>
             </div>
         </nav>
     </div>
