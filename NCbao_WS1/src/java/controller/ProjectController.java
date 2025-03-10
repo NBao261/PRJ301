@@ -61,7 +61,7 @@ public class ProjectController extends HttpServlet {
             String estimatedLaunchStr = request.getParameter("estimatedLaunch");
 
             // Check
-            if (isEmpty(projectIdStr) || isEmpty(projectName) || isEmpty(estimatedLaunchStr)) {
+            if (isEmpty(projectIdStr) || isEmpty(projectName) || isEmpty(estimatedLaunchStr) ||isEmpty(description)) {
                 request.setAttribute("error", "All required fields must be filled");
                 setFormAttributes(request, projectIdStr, projectName, description, status, estimatedLaunchStr);
                 request.getRequestDispatcher("add.jsp").forward(request, response);
@@ -109,7 +109,7 @@ public class ProjectController extends HttpServlet {
                 session.setAttribute("message", "Project created successfully");
                 response.sendRedirect("projects");
             } else {
-                request.setAttribute("error", "Failed to create project (ID may already exist)");
+                request.setAttribute("error", "Failed to create project (ID may be exist)");
                 setFormAttributes(request, projectIdStr, projectName, description, status, estimatedLaunchStr);
                 request.getRequestDispatcher("add.jsp").forward(request, response);
             }
