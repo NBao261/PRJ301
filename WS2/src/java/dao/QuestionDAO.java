@@ -3,6 +3,9 @@ package dao;
 import dto.QuestionDTO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 import utils.DBUtils;
 
 public class QuestionDAO {
@@ -23,7 +26,33 @@ public class QuestionDAO {
             return ps.executeUpdate() > 0;
         } catch (Exception e) {
             e.printStackTrace();
-            return false; 
+            return false;
         }
+    }
+
+    // Lấy danh sách câu hỏi theo examId
+    public List<QuestionDTO> getQuestionsByExamId(int examId) {
+        List<QuestionDTO> questions = new ArrayList<>();
+        String sql = "SELECT * FROM tblQuestions WHERE exam_id = ?";
+        try (Connection conn = DBUtils.getConnection();
+                PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, examId);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                questions.add(new QuestionDTO(
+                        rs.getInt("question_id"),
+                        rs.getInt("exam_id"),
+                        rs.getString("question_text"),
+                        rs.getString("option_a"),
+                        rs.getString("option_b"),
+                        rs.getString("option_c"),
+                        rs.getString("option_d"),
+                        rs.getString("correct_option").charAt(0)
+                ));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return questions;
     }
 }
